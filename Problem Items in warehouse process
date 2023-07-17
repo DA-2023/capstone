@@ -1,0 +1,64 @@
+SELECT *
+FROM Problem_tickets_2021_22U;
+
+SELECT 
+ COUNT(*)
+FROM Problem_tickets_2021_22U;
+
+** Total number of ticket for each Problem category from Jan 2021 to June 2023 **
+
+SELECT title,
+  COUNT (*) as "Total Tickets created"
+From Problem_tickets_2021_22U
+Where create_year>=2021
+Group by title
+ORDER by COUNT(*) DESC;
+
+ 
+** Number of tickets for each problem item for each year from 2020 to 2022 **
+
+SELECT title, create_year,
+  COUNT (create_year) as "Total Number of tickets"
+FROM  Problem_tickets_2021_22U
+WHERE create_year BETWEEN '2020' AND'2022'
+GROUP by title, create_year
+Order by title;
+
+** Average number of days for ticket to be resolved in 2022 ** 
+
+SELECT 
+  title,
+    AVG(no_of_date_to_resolve_ticket) AS "Average number of days for ticket to solve"      
+FROM Problem_tickets_2021_22U
+WHERE create_year>=2022
+Group by title
+Order by no_of_date_to_resolve_ticket DESC;
+
+ ** Average number of days for ticket to be resolved in 2021 ** 
+
+SELECT 
+  title, 
+    AVG(no_of_date_to_resolve_ticket) AS "Average number of days for ticket to solve"      
+FROM Problem_tickets_2021_22U
+WHERE create_year = 2021
+Group by title
+Order by no_of_date_to_resolve_ticket DESC;
+
+
+** Number of days to get resolved per category from 2021 to 2023 **
+
+SELECT 
+  title, create_year,
+    AVG(no_of_date_to_resolve_ticket) AS "Average number of days for ticket to solve"      
+FROM Problem_tickets_2021_22U
+WHERE create_year >2020
+Group by title, create_year;
+
+** Total number of ticket for each Problem category in 2023 **
+
+SELECT title,
+  COUNT (*) as "Total Tickets created"
+From Problem_tickets_2021_22U
+Where create_year=2023
+Group by title
+ORDER by COUNT(*) DESC;
